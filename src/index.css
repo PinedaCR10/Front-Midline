@@ -3,3 +3,21 @@
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
+
+:root {
+  --ml-pink: #F0CCD7; /* rosado/botones/barras en claro */
+  --ml-ink:  #5B3E46; /* textos/íconos en claro */
+}
+.dark {
+  --ml-pink: #3a2a2f; /* rosado profundo/botones en oscuro */
+  --ml-ink:  #F6E9EC; /* textos/íconos en oscuro */
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  color: var(--ml-ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
