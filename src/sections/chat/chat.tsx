@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { SendHorizonal } from "lucide-react";
 import { useChat } from "./useChat";
+import Functions from "./funtions";
 
 export default function Chat() {
   const { messages, send, pending, error } = useChat();
@@ -18,15 +19,21 @@ export default function Chat() {
   return (
     <section className="flex min-h-[calc(100vh-48px)] flex-col">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-white/80 backdrop-blur dark:bg-black/30"
-           style={{ borderBottom: `1px solid var(--ml-ink)` }}>
+      <div
+        className="sticky top-0 z-10 bg-white/80 backdrop-blur dark:bg-black/30"
+        style={{ borderBottom: `1px solid var(--ml-ink)` }}
+      >
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-4">
-          <h2 className="text-[15px] font-semibold" style={{ color: "var(--ml-ink)" }}>
+          {/* MODO OSCURO: forzamos #5B3E46 */}
+          <h2
+            className="text-[15px] font-semibold dark:!text-[#5B3E46]"
+            style={{ color: "var(--ml-ink)" }}
+          >
             Chat Anónimo de Apoyo
           </h2>
           <button
             onClick={() => history.back()}
-            className="text-sm opacity-80 hover:opacity-100"
+            className="text-sm opacity-80 hover:opacity-100 dark:!text-[#5B3E46]"
             style={{ color: "var(--ml-ink)" }}
           >
             Terminar chat
@@ -34,8 +41,8 @@ export default function Chat() {
         </div>
       </div>
 
-      {/* Lista de mensajes */}
-      <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-4 overflow-y-auto px-4 py-6 pb-2">
+      {/* Mensajes */}
+      <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-4 overflow-y-auto px-4 py-6 pb-3">
         {messages.map((m) => {
           const isUser = m.role === "user";
           return (
@@ -46,14 +53,20 @@ export default function Chat() {
               transition={{ type: "spring", stiffness: 120, damping: 16 }}
               className={[
                 "max-w-[80%] rounded-2xl px-4 py-3 shadow-[0_4px_0_rgba(91,62,70,0.25)]",
-                isUser ? "self-end" : "self-start",
+                isUser
+                  ? "self-end"
+                  : "self-start dark:!text-[#5B3E46]", // en dark, mensajes del chat van #5B3E46
               ].join(" ")}
               style={{
                 background: isUser ? "var(--ml-pink)" : "rgba(0,0,0,0.06)",
-                color: "var(--ml-ink)",
+                // LIGHT: usuario (burbuja rosada) → #5B3E46 | DARK: texto blanco
+                color: isUser ? "#5B3E46" : "var(--ml-ink)",
               }}
             >
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">{m.content}</p>
+              {/* si quieres que el texto del usuario sea BLANCO en dark, deja esta clase */}
+              <p className="text-sm leading-relaxed whitespace-pre-wrap dark:!text-white">
+                {m.content}
+              </p>
               <span className="mt-1 block text-[10px] opacity-60">
                 {new Date(m.createdAt).toLocaleTimeString()}
               </span>
@@ -61,16 +74,23 @@ export default function Chat() {
           );
         })}
 
-        {/* Escribiendo... */}
         {pending && (
-          <div className="self-start rounded-2xl bg-black/5 px-3 py-2"
-               style={{ color: "var(--ml-ink)" }}>
+          <div
+            className="self-start rounded-2xl bg-black/5 px-3 py-2 dark:!text-[#5B3E46]"
+            style={{ color: "var(--ml-ink)" }}
+          >
             <div className="flex items-center gap-1">
-              {[0,1,2].map(i => (
-                <motion.span key={i} className="inline-block h-2 w-2 rounded-full"
+              {[0, 1, 2].map((i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block h-2 w-2 rounded-full"
                   style={{ background: "var(--ml-ink)" }}
                   animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
+                  transition={{
+                    duration: 0.9,
+                    repeat: Infinity,
+                    delay: i * 0.15,
+                  }}
                 />
               ))}
             </div>
@@ -79,20 +99,26 @@ export default function Chat() {
       </div>
 
       {error && (
-        <p className="mx-auto w-full max-w-4xl px-4 pb-2 text-xs text-red-600">{error}</p>
+        <p className="mx-auto w-full max-w-4xl px-4 text-xs text-red-600">
+          {error}
+        </p>
       )}
 
-      {/* Input */}
-      <form onSubmit={submit}
-            className="sticky bottom-0 z-10 w-full bg-white/85 backdrop-blur dark:bg-black/30"
-            style={{ borderTop: `1px solid var(--ml-ink)` }}>
+      {/* Barra sticky del input con botones debajo */}
+      <form
+        onSubmit={submit}
+        className="sticky bottom-0 z-10 w-full bg-white/85 backdrop-blur dark:bg-black/30"
+        style={{ borderTop: `1px solid var(--ml-ink)` }}
+      >
+        {/* fila del input */}
         <div className="mx-auto flex max-w-4xl items-center gap-2 px-4 py-3">
           <input
             ref={inputRef}
             className="h-12 flex-1 rounded-2xl border border-black/10 bg-white px-4 text-sm outline-none
-                       focus:ring-2 focus:ring-[color:var(--ml-ink)]/20 dark:bg-white/10"
+                       focus:ring-2 focus:ring-[color:var(--ml-ink)]/20 dark:bg-white/10
+                       placeholder:text-[#5B3E46] dark:placeholder:text-[#5B3E46]
+                       text-[#5B3E46] dark:text-white"
             placeholder="Escribe tu mensaje…"
-            style={{ color: "var(--ml-ink)" }}
             disabled={pending}
           />
           <button
@@ -106,6 +132,11 @@ export default function Chat() {
           >
             <SendHorizonal size={18} />
           </button>
+        </div>
+
+        {/* ⬇️ BOTONES DEBAJO DEL INPUT, CENTRADOS */}
+        <div className="mx-auto max-w-4xl px-4 pb-3 flex justify-center">
+          <Functions messages={messages} />
         </div>
       </form>
     </section>
