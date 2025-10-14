@@ -5,6 +5,7 @@ import HomePage from "../pages/Homepage";
 import AdminDashboard from "../pages/AdminDashboard";
 import LoginPage from "../auth/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import Chat from "./chat/chat";
 
 
 export default function AppRoutes() {
@@ -15,6 +16,7 @@ export default function AppRoutes() {
       {/* LANDING: Header + Navbar + Footer */}
       <Route element={<GlobalLayout showTop />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/chat" element={<Chat />} />
         {/* Agrega aquí más rutas públicas tipo landing si las necesitas */}
         {/* <Route path="/about" element={<AboutPage />} /> */}
       </Route>
