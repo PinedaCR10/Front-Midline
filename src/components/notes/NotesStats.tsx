@@ -1,5 +1,5 @@
 import { Flame, MessageCircle, Calendar, BookOpen } from 'lucide-react';
-import { NotesStats as NotesStatsType } from '../../types/notes';
+import type { NotesStats as NotesStatsType } from '../../types/notes';
 
 interface NotesStatsProps {
   stats: NotesStatsType;
