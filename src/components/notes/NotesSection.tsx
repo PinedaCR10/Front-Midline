@@ -85,8 +85,8 @@ export default function NotesSection() {
             <BookOpen className="w-6 h-6 text-blue-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Diario</h1>
-            <p className="text-gray-400 text-sm">Tus pensamientos y reflexiones</p>
+            <h1 className="text-2xl font-bold text-gray-900">Diario</h1>
+            <p className="text-gray-600 text-sm">Tus pensamientos y reflexiones</p>
           </div>
         </div>
         
@@ -111,7 +111,7 @@ export default function NotesSection() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar en tus notas..."
-            className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all"
+            className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all"
           />
         </div>
         
@@ -119,8 +119,8 @@ export default function NotesSection() {
           onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
           className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-colors ${
             showFavoritesOnly
-              ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-              : 'bg-white/10 text-gray-400 border border-white/20 hover:text-white'
+              ? 'bg-red-50 text-red-600 border border-red-200'
+              : 'bg-gray-50 text-gray-600 border border-gray-200 hover:text-gray-900'
           }`}
         >
           <Filter className="w-5 h-5" />

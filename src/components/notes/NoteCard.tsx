@@ -63,15 +63,15 @@ export default function NoteCard({ note, onEdit, onDelete, onToggleFavorite }: N
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-200 shadow-lg"
+      className="bg-white rounded-2xl p-4 border border-gray-200 hover:shadow-lg transition-all duration-200 shadow-sm"
     >
       {/* Header de la tarjeta */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1">
-          <h3 className="text-white font-semibold text-lg mb-1 line-clamp-2">
+          <h3 className="text-gray-900 font-semibold text-lg mb-1 line-clamp-2">
             {note.title}
           </h3>
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-500 text-sm">
             {formatDate(note.createdAt)}
           </p>
         </div>
@@ -82,8 +82,8 @@ export default function NoteCard({ note, onEdit, onDelete, onToggleFavorite }: N
             onClick={() => onToggleFavorite(note.id)}
             className={`p-2 rounded-lg transition-colors ${
               note.isFavorite 
-                ? 'bg-red-500/20 text-red-400' 
-                : 'bg-white/10 text-gray-400 hover:text-red-400'
+                ? 'bg-red-50 text-red-500' 
+                : 'bg-gray-50 text-gray-400 hover:text-red-500'
             }`}
           >
             <Heart 
@@ -95,7 +95,7 @@ export default function NoteCard({ note, onEdit, onDelete, onToggleFavorite }: N
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="p-2 rounded-lg bg-white/10 text-gray-400 hover:text-white transition-colors"
+              className="p-2 rounded-lg bg-gray-50 text-gray-400 hover:text-gray-900 transition-colors"
             >
               <MoreHorizontal className="w-4 h-4" />
             </button>
@@ -140,21 +140,21 @@ export default function NoteCard({ note, onEdit, onDelete, onToggleFavorite }: N
 
       {/* Contenido de la nota */}
       <div className="mb-4">
-        <p className="text-gray-300 leading-relaxed">
+        <p className="text-gray-700 leading-relaxed">
           {isExpanded ? note.content : getPreviewText(note.content)}
         </p>
       </div>
 
       {/* Footer de la tarjeta */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4 text-sm text-gray-400">
+        <div className="flex items-center gap-4 text-sm text-gray-500">
           <span>{note.wordCount} palabras</span>
           {note.tags && note.tags.length > 0 && (
             <div className="flex items-center gap-1">
               {note.tags.slice(0, 2).map((tag, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 bg-white/10 rounded-full text-xs"
+                  className="px-2 py-1 bg-gray-100 rounded-full text-xs"
                 >
                   {tag}
                 </span>
@@ -169,7 +169,7 @@ export default function NoteCard({ note, onEdit, onDelete, onToggleFavorite }: N
         {note.content.length > 150 && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+            className="flex items-center gap-1 text-gray-500 hover:text-gray-900 transition-colors"
           >
             <span className="text-sm">
               {isExpanded ? 'Ver menos' : 'Ver más'}

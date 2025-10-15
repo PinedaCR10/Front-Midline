@@ -4,9 +4,9 @@ import NotesSection from '../components/notes/NotesSection'
 
 const Homepage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <div className="min-h-screen bg-white">
       <Hero />
-      <div className="relative z-10 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+      <div className="relative z-10 bg-white">
         <NotesSection />
       </div>
     </div>
