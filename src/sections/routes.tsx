@@ -2,6 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import GlobalLayout from "../layout/GlobalLayout";
 import HomePage from "../pages/Homepage";
+import DiaryPage from "../pages/DiaryPage";
 import AdminDashboard from "../pages/AdminDashboard";
 import LoginPage from "../auth/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -17,6 +18,7 @@ export default function AppRoutes() {
       <Route element={<GlobalLayout showTop />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/diario" element={<DiaryPage />} />
         {/* Agrega aquí más rutas públicas tipo landing si las necesitas */}
         {/* <Route path="/about" element={<AboutPage />} /> */}
       </Route>

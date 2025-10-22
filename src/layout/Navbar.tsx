@@ -1,9 +1,10 @@
-import { Home, MessageCircle, Shield, Phone, Heart } from "lucide-react";
+import { Home, MessageCircle, Shield, Phone, Heart, BookOpen } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const items = [
   { to: "/", label: "Inicio", icon: Home },
   { to: "/chat", label: "Chat", icon: MessageCircle },
+  { to: "/diario", label: "Diario", icon: BookOpen },
   { to: "/seguridad", label: "Seguridad", icon: Shield },
   { to: "/recursos", label: "Recursos", icon: Phone },
   { to: "/ejercicios", label: "Ejercicios", icon: Heart },
@@ -31,7 +32,7 @@ function Item({ to, label, Icon }: { to: string; label: string; Icon: any }) {
 
 export default function Navbar() {
   const content = (
-    <nav className="mx-auto grid max-w-md grid-cols-5 items-center gap-1">
+    <nav className="mx-auto grid max-w-md grid-cols-6 items-center gap-1">
       {items.map((it) => (
         <Item key={it.to} to={it.to} label={it.label} Icon={it.icon} />
       ))}
