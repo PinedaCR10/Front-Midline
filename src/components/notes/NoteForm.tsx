@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Save, Tag } from 'lucide-react';
-import { Note, NoteFormData } from '../../types/notes';
+import type { Note, NoteFormData } from '../../types/notes';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NoteFormProps {

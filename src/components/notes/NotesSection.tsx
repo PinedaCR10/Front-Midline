@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Plus, Search, Filter, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNotes } from '../../hooks/useNotes';
-import { Note, NoteFormData, NotesFilter } from '../../types/notes';
+import type { Note, NoteFormData, NotesFilter } from '../../types/notes';
 import NotesStats from './NotesStats';
 import NoteCard from './NoteCard';
 import NoteForm from './NoteForm';
@@ -12,7 +12,6 @@ import NoteForm from './NoteForm';
  */
 export default function NotesSection() {
   const {
-    notes,
     isLoading,
     createNote,
     updateNote,

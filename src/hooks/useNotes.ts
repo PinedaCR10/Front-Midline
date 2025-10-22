@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Note, NoteFormData, NotesStats, NotesFilter } from '../types/notes';
+import type { Note, NoteFormData, NotesStats, NotesFilter } from '../types/notes';
 
 const STORAGE_KEY = 'diary-notes';
 
