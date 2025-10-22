@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, MoreHorizontal, Heart, Edit, Trash2 } from 'lucide-react';
-import { Note } from '../../types/notes';
+import type { Note } from '../../types/notes';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NoteCardProps {
